@@ -1,0 +1,20 @@
+{
+  "mongo": {
+    "driver": "mongodb",
+    "user": {
+      "ENV": "MONGO_USER"
+    },
+    "password": {
+      "ENV": "MONGO_PASSWORD"
+    },
+    "host": {
+      "ENV": "MONGO_HOST"
+    },
+    "database": {
+      "ENV": "MONGO_DB"
+    },
+    "port": {
+      "ENV": "MONGO_PORT"
+    }
+  }
+}
