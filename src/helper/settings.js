@@ -4,7 +4,7 @@ const exceptForTests = process.env.NODE_ENV !== 'test';
 
 module.exports = {
   port: env
-    .get('PRODUCT_API_PORT')
+    .get('PORT')
     .required(exceptForTests)
     .asIntPositive(),
 
