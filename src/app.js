@@ -1,5 +1,6 @@
 const Express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const compression = require('compression');
 const routerConfig = require('./routers');
 const {
@@ -19,6 +20,7 @@ module.exports = async () => {
 
   app.use(compression());
   app.use(rateLimit);
+  app.use(cors());
   app.use(...swaggerConfig);
 
   routerConfig.loadIn();
