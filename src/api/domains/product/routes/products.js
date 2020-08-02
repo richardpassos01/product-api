@@ -12,6 +12,9 @@ exports.loadIn = function loadIn(
   router.put('/products/:id',
     (...args) => controller.update(...args));
 
+  router.delete('/products/:id',
+    (...args) => controller.delete(...args));
+
   router.post('/products',
     (...args) => controller.create(...args));
 };

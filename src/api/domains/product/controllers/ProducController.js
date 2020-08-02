@@ -10,11 +10,11 @@ class ProductController {
 
   listProducts(req, res) {
     const {
-      productId
+      id
     } = req.query;
 
     return this.service.listProducts({
-        productId
+        id
       })
       .then((products) => res.status(OK).json(products))
       .catch((err) => logger.error(err));
@@ -39,6 +39,18 @@ class ProductController {
         price,
         description,
         cover
+      })
+      .then((product) => res.status(OK).json(product))
+      .catch((err) => logger.error(err));
+  }
+
+  delete(req, res) {
+    const {
+      id
+    } = req.params;
+
+    return this.service.delete({
+        id
       })
       .then((product) => res.status(OK).json(product))
       .catch((err) => logger.error(err));

@@ -4,13 +4,13 @@ class ProductRepository {
   }
 
   async listProducts({
-    productId = null
+    id = null
   } = {}) {
     const {
       Product
     } = await this.mongo.models();
-    const findAll = productId ? {
-      _id: productId
+    const findAll = id ? {
+      _id: id
     } : null;
 
     return Product.find(findAll).sort('-createdAt');
@@ -28,6 +28,18 @@ class ProductRepository {
       _id: id
     }, {
       ...data
+    });
+  }
+
+  async delete({
+    id
+  }) {
+    const {
+      Product
+    } = await this.mongo.models();
+
+    return Product.deleteOne({
+      _id: id
     });
   }
 

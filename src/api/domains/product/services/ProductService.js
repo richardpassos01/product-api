@@ -1,18 +1,35 @@
 const logger = require('../../../../helper/logger');
 
+const sanitizeProducts = (products) => products.map(({
+  _id,
+  name,
+  price,
+  description,
+  cover
+}) => {
+  return {
+    id: _id,
+    productName: name,
+    productPrice: price,
+    productDescription: description,
+    productCover: cover
+  }
+});
+
 class ProductService {
   constructor(params = {}) {
     this.repository = params.repository;
   }
 
   async listProducts({
-    productId = null
+    id = null
   } = {}) {
     try {
-      return this.repository.listProducts({
-        productId
+      const productList = await this.repository.listProducts({
+        id
       });
 
+      return sanitizeProducts(productList);
     } catch (err) {
       logger.error(err);
       throw err;
@@ -50,6 +67,19 @@ class ProductService {
       return this.repository.update({
         id,
         ...paramsToUpdate
+      });
+    } catch (err) {
+      logger.error(err);
+      throw err;
+    }
+  }
+
+  async delete({
+    id
+  }) {
+    try {
+      return this.repository.delete({
+        id
       });
     } catch (err) {
       logger.error(err);
